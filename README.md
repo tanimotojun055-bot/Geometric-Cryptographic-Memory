@@ -1,6 +1,3 @@
-# Geometric-Cryptographic-Memory
-動的3Dハッシュと時空幾何に基づく暗号記憶モデル
-
 Geometric Cryptographic Memory
 
 動的3Dハッシュと時空幾何に基づく暗号記憶モデル
@@ -31,9 +28,7 @@ Cryptographic Digest
 
 これにより、暗号値は固定されたデータ列ではなく、
 
-$$
 \mathcal{M}(t)
-$$
 
 という時間依存する幾何学的記憶状態から生成される。
 
@@ -43,15 +38,11 @@ $$
 
 従来の暗号技術では、情報は主として
 
-$$
-b_i \in {0,1}
-$$
+b_i \in \{0,1\}
 
 からなるビット列として記憶され、ハッシュ関数は
 
-$$
-H:{0,1}^{*}\rightarrow{0,1}^{n}
-$$
+H:\{0,1\}^{*}\rightarrow\{0,1\}^{n}
 
 として定義される。
 
@@ -77,17 +68,13 @@ $$
 
 3次元暗号状態を
 
-$$
 P(\mathbf{x},t)
-$$
 
 として定義する。
 
 ここで、
 
-$$
 \mathbf{x}=(x,y,z)
-$$
 
 である。
 
@@ -95,9 +82,7 @@ $$
 
 離散表現では、
 
-$$
 P_{ijk}(t)
-$$
 
 として格子上に配置することができる。
 
@@ -107,39 +92,32 @@ $$
 
 3次元物体を外部から観測する場合、基本的な六方向を
 
-$$
 \mathcal{F}
-
-{
+=
+\{
 +x,-x,+y,-y,+z,-z
-}
-$$
+\}
 
 とする。
 
 各方向への投影を
 
-$$
 \Pi_f[P],
 \qquad
 f\in\mathcal{F}
-$$
 
 と定義する。
 
 各面のハッシュを
 
-$$
 h_f
-
+=
 H(\Pi_f[P])
-$$
 
 とすれば、表面情報は
 
-$$
 H_{\mathrm{surface}}
-
+=
 H(
 h_{+x}
 \Vert
@@ -153,45 +131,38 @@ h_{+z}
 \Vert
 h_{-z}
 )
-$$
 
 として表現できる。
 
 しかし六方向投影だけでは、一般に内部構造を一意に決定できない。
 
-$$
-{
+\{
 \Pi_f[P]
-}_{f\in\mathcal{F}}
+\}_{f\in\mathcal{F}}
 \nRightarrow
 P
-$$
 
 したがって、本モデルでは表面状態と内部状態を分離する。
 
 内部状態のハッシュを
 
-$$
 H_{\mathrm{internal}}
-
+=
 H(
 \operatorname{Encode}(P_{\mathrm{internal}})
 )
-$$
 
 と定義する。
 
 そして、
 
-$$
 H_{\mathrm{3D}}
-
+=
 H(
 H_{\mathrm{surface}}
 \Vert
 H_{\mathrm{internal}}
 )
-$$
 
 とする。
 
@@ -201,40 +172,32 @@ $$
 
 空間自体を固定されたユークリッド空間とはせず、時間依存する計量
 
-$$
 g_{ij}(\mathbf{x},t)
-$$
 
 を導入する。
 
 線素は、
 
-$$
 ds^2
-
+=
 g_{ij}
 dx^i dx^j
-$$
 
 で与えられる。
 
 これにより、同一の3Dデータであっても、
 
-$$
 g_{ij}(t_1)
 \neq
 g_{ij}(t_2)
-$$
 
 ならば異なる幾何状態となる。
 
 暗号状態は、
 
-$$
 P
 \rightarrow
 P_g
-$$
 
 と変換される。
 
@@ -244,25 +207,21 @@ $$
 
 空間上に暗号場
 
-$$
 \phi(\mathbf{x},t)
-$$
 
 を定義する。
 
 完全な幾何暗号状態を、
 
-$$
 \mathcal{M}(t)
-
-{
+=
+\{
 P,
 \phi,
 g_{ij},
 E,
 \mathcal{Q}
-}
-$$
+\}
 
 とする。
 
@@ -282,9 +241,8 @@ $$
 
 暗号状態をエネルギー地形として扱うため、次のエネルギー汎関数を定義する。
 
-$$
 \mathcal{E}[\phi]
-
+=
 \int_{\Omega}
 \sqrt{g}
 \left[
@@ -294,32 +252,25 @@ g^{ij}
 \partial_j\phi
 +
 V(\phi)
-
+-
 J(\mathbf{x},t)\phi
 \right]
 d^3x
-$$
 
 ここで、
 
-$$
 \frac{\alpha}{2}
 g^{ij}
 \partial_i\phi
 \partial_j\phi
-$$
 
 は空間的変形に対するエネルギー、
 
-$$
 V(\phi)
-$$
 
 は局所ポテンシャル、
 
-$$
 J(\mathbf{x},t)
-$$
 
 は外部入力を表す。
 
@@ -329,37 +280,31 @@ $$
 
 安定状態は変分原理
 
-$$
 \delta \mathcal{E}=0
-$$
 
 によって求める。
 
 オイラー＝ラグランジュ方程式は、
 
-$$
 -\alpha \Delta_g\phi
 +
 V'(\phi)
-
+=
 J
-$$
 
 となる。
 
 ここで、
 
-$$
 \Delta_g\phi
-
+=
 \frac{1}{\sqrt{g}}
 \partial_i
 \left(
-\sqrt{g},
+\sqrt{g}\,
 g^{ij}
 \partial_j\phi
 \right)
-$$
 
 である。
 
@@ -373,32 +318,26 @@ $$
 
 典型例として、
 
-$$
 V(\phi)
-
+=
 \frac{\lambda}{4}
 (\phi^2-a^2)^2
-$$
 
 を取る。
 
 このとき、
 
-$$
 V'(\phi)
-
+=
 \lambda\phi(\phi^2-a^2)
-$$
 
 であるため、
 
-$$
 -\alpha\Delta_g\phi
 +
 \lambda\phi(\phi^2-a^2)
-
+=
 J
-$$
 
 を得る。
 
@@ -410,30 +349,26 @@ $$
 
 時間発展を勾配流として、
 
-$$
 \frac{\partial\phi}{\partial t}
-
+=
 -\Gamma
 \frac{\delta\mathcal{E}}
 {\delta\phi}
-$$
 
 と定義する。
 
 したがって、
 
-$$
 \frac{\partial\phi}{\partial t}
-
+=
 \Gamma
 \left[
 \alpha\Delta_g\phi
-
+-
 \lambda\phi(\phi^2-a^2)
 +
 J
 \right]
-$$
 
 となる。
 
@@ -457,25 +392,19 @@ M*
 
 本研究ではさらに、
 
-$$
 g_{ij}=g_{ij}(\mathbf{x},t)
-$$
 
 および、
 
-$$
 J=J(\mathbf{x},t)
-$$
 
 とする。
 
 したがって、
 
-$$
-\mathcal{E}t[X]
+\mathcal{E}_t[X]
 \neq
-\mathcal{E}{t+\Delta t}[X]
-$$
+\mathcal{E}_{t+\Delta t}[X]
 
 となる。
 
@@ -487,11 +416,9 @@ $$
 
 安定状態も、
 
-$$
 X_{\ast}
-
+=
 X_{\ast}(t)
-$$
 
 となる。
 
@@ -501,26 +428,21 @@ $$
 
 球対称状態
 
-$$
 \phi=\phi(r)
-$$
 
 の場合、
 
-$$
 \Delta\phi
-
+=
 \frac{d^2\phi}{dr^2}
 +
 \frac{2}{r}
 \frac{d\phi}{dr}
-$$
 
 である。
 
 したがって、
 
-$$
 -\alpha
 \left(
 \phi''
@@ -529,15 +451,13 @@ $$
 \right)
 +
 \lambda\phi(\phi^2-a^2)
-
+=
 J(r)
-$$
 
 となる。
 
 境界層近似では、
 
-$$
 \phi(r)
 \simeq
 a
@@ -545,18 +465,15 @@ a
 \left(
 \frac{r-R}{\xi}
 \right)
-$$
 
 を得る。
 
 ここで、
 
-$$
 \xi
-
+=
 \frac{\sqrt{2\alpha}}
 {a\sqrt{\lambda}}
-$$
 
 である。
 
@@ -568,30 +485,22 @@ $$
 
 時間変化を導入すると、
 
-$$
 R=R(t)
-$$
 
-$$
 \xi=\xi(t)
-$$
 
-$$
 a=a(t)
-$$
 
 として、
 
-$$
 \phi(r,t)
-
+=
 a(t)
 \tanh
 \left(
 \frac{r-R(t)}
 {\xi(t)}
 \right)
-$$
 
 となる。
 
@@ -603,39 +512,31 @@ $$
 
 宇宙論的アナロジーとして、
 
-$$
 ds^2
-
+=
 -dt^2
 +
 a^2(t)
 d\mathbf{x}^2
-$$
 
 を利用する。
 
 膨張率を、
 
-$$
 H(t)
-
+=
 \frac{\dot{a}(t)}
 {a(t)}
-$$
 
 と定義する。
 
 このとき、
 
-$$
 H>0
-$$
 
 は膨張、
 
-$$
 H<0
-$$
 
 は収縮に対応する。
 
@@ -647,27 +548,21 @@ $$
 
 球状場は球面調和関数を用いて、
 
-$$
 \phi(r,\theta,\varphi,t)
-
+=
 \sum_{\ell,m}
 q_{\ell m}(r,t)
 Y_{\ell m}(\theta,\varphi)
-$$
 
 と展開できる。
 
 ここで、
 
-$$
 \ell=0,1,2,\ldots
-$$
 
 および、
 
-$$
 m=-\ell,\ldots,\ell
-$$
 
 は角度方向の固有モード番号である。
 
@@ -679,37 +574,31 @@ $$
 
 外部回転場を、
 
-$$
 \mathbf{E}_{\mathrm{rot}}(t)
-
+=
 E_0
 \begin{pmatrix}
--\sin\Omega t\
-\cos\Omega t\
+-\sin\Omega t\\
+\cos\Omega t\\
 0
 \end{pmatrix}
-$$
 
 とする。
 
 暗号場との結合を、
 
-$$
 \mathcal{E}_{\mathrm{coupling}}
-
+=
 -\gamma
 \mathbf{P}(\phi)
 \cdot
 \mathbf{E}_{\mathrm{rot}}
-$$
 
 と定義する。
 
 この外場により球対称性が破れ、
 
-$$
 \ell>0
-$$
 
 のモードが励起される。
 
@@ -719,7 +608,6 @@ $$
 
 各モードの時間発展を近似的に、
 
-$$
 \ddot q_n
 +
 2\zeta_n\omega_n\dot q_n
@@ -727,9 +615,8 @@ $$
 \omega_n^2 q_n
 +
 \beta_n q_n^3
-
+=
 F_n\cos\Omega t
-$$
 
 とする。
 
@@ -737,19 +624,15 @@ $$
 
 外部周波数が、
 
-$$
 \Omega
 \simeq
 \omega_n
-$$
 
 となると、特定モードの励起が強くなる。
 
 非線形項
 
-$$
 \beta_n q_n^3
-$$
 
 によって、
 
@@ -768,34 +651,29 @@ $$
 
 さらに場を量子化する場合、
 
-$$
 q_{\ell m}
 \rightarrow
 \hat q_{\ell m}
-$$
 
 とする。
 
 正準交換関係として、
 
-$$
 [
 \hat q_{\ell m},
 \hat p_{\ell' m'}
 ]
-
+=
 i\hbar
 \delta_{\ell\ell'}
 \delta_{mm'}
-$$
 
 を導入する。
 
 単純化したハミルトニアンは、
 
-$$
 \hat H
-
+=
 \sum_{\ell,m}
 \left[
 \frac{\hat p_{\ell m}^2}{2}
@@ -806,13 +684,11 @@ $$
 \frac{\beta}{4}
 \hat q_{\ell m}^4
 \right]
-$$
 
 と書ける。
 
 すると、離散的なエネルギー状態、
 
-$$
 E_0
 <
 E_1
@@ -820,7 +696,6 @@ E_1
 E_2
 <
 \cdots
-$$
 
 を考えることができる。
 
@@ -830,29 +705,23 @@ $$
 
 GCM における記憶状態を、
 
-$$
 |\Psi_n\rangle
-$$
 
 で表現する。
 
 外部からエネルギーが与えられた場合、
 
-$$
 |\Psi_n\rangle
 \xrightarrow{\Delta E}
 |\Psi_m\rangle
-$$
 
 という状態遷移が生じる。
 
 エネルギーが失われれば、
 
-$$
 |\Psi_m\rangle
 \rightarrow
 |\Psi_n\rangle
-$$
 
 または別の低エネルギー状態へ遷移する。
 
@@ -872,17 +741,15 @@ Geometric Memory Change
 
 本研究における中心概念を、
 
-$$
 \mathcal{M}(t)
-
-{
+=
+\{
 g_{ij},
 \phi,
 P,
 E,
 q_{\ell m}
-}
-$$
+\}
 
 として定義する。
 
@@ -914,33 +781,27 @@ GCM の基本操作を以下のように定義する。
 
 Write
 
-$$
-\mathcal{M}i
-\xrightarrow{E{\mathrm{input}}}
+\mathcal{M}_i
+\xrightarrow{E_{\mathrm{input}}}
 \mathcal{M}_j
-$$
 
 Store
 
-$$
 \frac{\delta\mathcal{E}}
 {\delta\mathcal{M}}
-
+=
 0
-$$
 
 となる安定状態を保持する。
 
 Read
 
-$$
 D_j
-
+=
 H[
 \operatorname{Encode}
 (\mathcal{M}_j)
 ]
-$$
 
 ---
 
@@ -948,25 +809,19 @@ $$
 
 二つの安定状態間には、エネルギー障壁
 
-$$
 \Delta E_{ij}
-$$
 
 が存在すると考える。
 
-$$
 \mathcal{M}_i
 \rightarrow
 \mathcal{M}_j
-$$
 
 への遷移には、
 
-$$
 E_{\mathrm{input}}
 \geq
 \Delta E_{ij}
-$$
 
 が必要になる。
 
@@ -982,9 +837,8 @@ $$
 
 GCM状態から最終ハッシュを、
 
-$$
 H_t
-
+=
 H
 \left(
 H_{\mathrm{surface}}
@@ -997,28 +851,23 @@ Q_t
 \Vert
 E_t
 \right)
-$$
 
 と構成する。
 
 ここで、
 
-$$
 G_t
-
+=
 \operatorname{Encode}(g_{ij}(t))
-$$
 
 であり、
 
-$$
 Q_t
-
+=
 \operatorname{Encode}
 \left(
-{q_{\ell m}(t)}
+\{q_{\ell m}(t)\}
 \right)
-$$
 
 である。
 
@@ -1028,25 +877,21 @@ $$
 
 変分問題によって得られる安定状態を、
 
-$$
 \mathcal{M}_{\ast}
-
+=
 \operatorname*{stationary}
 \mathcal{E}
-$$
 
 とする。
 
 最終値を、
 
-$$
 H_{\ast}
-
+=
 H(
 \operatorname{Encode}
 (\mathcal{M}_{\ast})
 )
-$$
 
 と定義する。
 
@@ -1056,36 +901,31 @@ $$
 
 初期状態から最終状態までの軌道を、
 
-$$
 \Gamma
-
-{
+=
+\{
 \mathcal{M}_0,
-\mathcal{M}1,
+\mathcal{M}_1,
 \ldots,
-\mathcal{M}{\ast}
-}
-$$
+\mathcal{M}_{\ast}
+\}
 
 とする。
 
 軌道そのものから、
 
-$$
 H_{\Gamma}
-
+=
 H(
 \operatorname{Encode}(\Gamma)
 )
-$$
 
 を生成できる。
 
 最終的に、
 
-$$
 H_{\mathrm{GCM}}
-
+=
 H(
 H_{\ast}
 \Vert
@@ -1093,7 +933,6 @@ H_{\Gamma}
 \Vert
 E_{\ast}
 )
-$$
 
 とする。
 
@@ -1113,29 +952,24 @@ GCMのみを秘密性の根拠とはせず、標準的な暗号プリミティ�
 
 秘密値を、
 
-$$
 K_s
-$$
 
 とし、
 
-$$
 K_t
-
+=
 \operatorname{KDF}
 \left(
 K_s,
 H_{\mathrm{GCM}}(t)
 \right)
-$$
 
 とする。
 
 より具体的には、
 
-$$
 K_t
-
+=
 \operatorname{HKDF}
 \left(
 K_s,
@@ -1147,15 +981,12 @@ E_t
 N_t
 )
 \right)
-$$
 
 とする。
 
 ここで、
 
-$$
 N_t
-$$
 
 は新規暗号乱数である。
 
@@ -1182,9 +1013,7 @@ $$
 
 基本的な秘密性は、
 
-$$
 K_s
-$$
 
 および、
 
@@ -1201,9 +1030,8 @@ $$
 
 GCM の最大の特徴の一つは、
 
-$$
 \mathcal{E}
-
+=
 \mathcal{E}
 (
 P,
@@ -1212,36 +1040,29 @@ g,
 q,
 t
 )
-$$
 
 という高次元非凸エネルギー地形を利用できることである。
 
 局所安定状態を、
 
-$$
-\mathcal{M}{\ast}^{(1)},
-\mathcal{M}{\ast}^{(2)},
+\mathcal{M}_{\ast}^{(1)},
+\mathcal{M}_{\ast}^{(2)},
 \ldots,
 \mathcal{M}_{\ast}^{(N)}
-$$
 
 とする。
 
 暗号状態は、
 
-$$
 \mathcal{M}_0
-$$
 
 がどの吸引域に存在するかによって異なる。
 
 さらに、地形そのものが、
 
-$$
-\mathcal{E}t
+\mathcal{E}_t
 \rightarrow
-\mathcal{E}{t+\Delta t}
-$$
+\mathcal{E}_{t+\Delta t}
 
 と変化する。
 
@@ -1255,18 +1076,16 @@ $$
 
 幾何学的状態として、
 
-$$
 \mathcal{G}
 \in
-{
+\{
 \text{sphere},
 \text{ellipsoid},
 \text{cone},
 \text{cylinder},
 \text{torus},
 \ldots
-}
-$$
+\}
 
 を考えることができる。
 
@@ -1279,13 +1098,11 @@ $$
 
 を持つ。
 
-$$
 \mathcal{G}
 \rightarrow
-{
+\{
 \lambda_n^{(\mathcal{G})}
-}
-$$
+\}
 
 したがって、形状そのものも暗号状態となり得る。
 
@@ -1297,19 +1114,15 @@ $$
 
 球面では、
 
-$$
 S^2
-$$
 
 である一方、トーラスでは、
 
-$$
 T^2
-
+=
 S^1
 \times
 S^1
-$$
 
 となる。
 
@@ -1422,9 +1235,8 @@ Geometric Cryptographic Memory とは、情報を時変計量、場、内部構�
 
 形式的には、
 
-$$
 \mathcal{M}(t)
-
+=
 (
 P_t,
 g_t,
@@ -1432,20 +1244,17 @@ g_t,
 E_t,
 Q_t
 )
-$$
 
 および、
 
-$$
 K_t
-
+=
 \mathcal{K}
 [
 \mathcal{M}(t),
 K_s,
 N_t
 ]
-$$
 
 によって定義される。
 
@@ -1479,7 +1288,6 @@ Hypothesis 4
 
 1. 球対称非線形モデルの数値解析
 
-$$
 -\alpha
 \left(
 \phi''
@@ -1488,19 +1296,16 @@ $$
 \right)
 +
 \lambda\phi(\phi^2-a^2)
-
+=
 J(r,t)
-$$
 
 2. 回転外場による球面モード励起
 
-$$
 \phi
-
+=
 \sum_{\ell,m}
 q_{\ell m}
 Y_{\ell m}
-$$
 
 3. 膨張・収縮する計量上での状態遷移
 
@@ -1526,17 +1331,15 @@ $$
 
 中心状態は、
 
-$$
 \mathcal{M}(t)
-
-{
+=
+\{
 P,
 g,
 \phi,
 E,
 q_{\ell m}
-}
-$$
+\}
 
 であり、情報は空間内部に格納されるのではなく、
 
@@ -1546,11 +1349,9 @@ $$
 
 外部エネルギーにより、
 
-$$
 \mathcal{M}_i
 \rightarrow
 \mathcal{M}_j
-$$
 
 という状態遷移が起こり、暗号値も動的に変化する。
 
